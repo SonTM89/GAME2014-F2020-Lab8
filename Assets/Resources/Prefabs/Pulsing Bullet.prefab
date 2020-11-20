@@ -120,7 +120,7 @@ MonoBehaviour:
   verticalSpeed: 4
   verticalBoundary: 50
   damage: 0
-  contacFilter:
+  contactFilter:
     useTriggers: 1
     useLayerMask: 1
     useDepth: 0

@@ -26,7 +26,8 @@ public class OpossumBehaviour : MonoBehaviour
 
     public LOS opossumLOS;
 
-    [Header("Bullet Firing")]
+
+    [Header("Bullet Firing")] 
     public Transform bulletSpawn;
     public float fireDelay;
     public PlayerBehaviour player;
@@ -44,9 +45,9 @@ public class OpossumBehaviour : MonoBehaviour
     {
         if (_hasLOS())
         {
-            //Debug.Log("See player");
             _FireBullet();
         }
+
         _LookInFront();
         _LookAhead();
         _Move();
@@ -54,16 +55,14 @@ public class OpossumBehaviour : MonoBehaviour
 
     private void _FireBullet()
     {
-
-
-        // delay bullet firing 
+        //delay bullet firing
         if (Time.frameCount % fireDelay == 0 && BulletManager.Instance().HasBullets())
         {
             var playerPosition = player.transform.position;
             var firingDirection = Vector3.Normalize(playerPosition - bulletSpawn.position);
 
+            Debug.Log(firingDirection.ToString());
 
-            Debug.Log("Fire!");
             BulletManager.Instance().GetBullet(bulletSpawn.position, firingDirection);
         }
 
@@ -71,16 +70,16 @@ public class OpossumBehaviour : MonoBehaviour
 
     private bool _hasLOS()
     {
-        if(opossumLOS.colliders.Count > 0)
+        if (opossumLOS.colliders.Count > 0)
         {
             if (opossumLOS.collidesWith.gameObject.name == "Player" && opossumLOS.colliders[0].gameObject.name == "Player")
             {
                 return true;
             }
-        }       
-
+        }
         return false;
     }
+
 
     private void _LookInFront()
     {

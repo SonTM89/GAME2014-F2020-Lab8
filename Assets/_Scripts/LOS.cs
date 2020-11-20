@@ -6,11 +6,12 @@ using UnityEngine;
 public class LOS : MonoBehaviour
 {
     public Collider2D collidesWith;
-    public ContactFilter2D ContactFilter;
+    public ContactFilter2D contactFilter;
     public List<Collider2D> colliders;
 
     //private BoxCollider2D LOSCollider;
     private PolygonCollider2D LOSCollider;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,7 @@ public class LOS : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Physics2D.GetContacts(LOSCollider, ContactFilter, colliders);
+        Physics2D.GetContacts(LOSCollider, contactFilter, colliders);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
